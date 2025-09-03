@@ -1,7 +1,7 @@
 pipeline {
-    agent { label 'Jenkins-Agent' }
+    agent any
     environment {
-        APP_NAME = 'mallow-sale-api'
+        IMAGE_NAME = 'butternoei008/mallow-sale-api'
     }
 
     stages {
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh """
                    cat deployment.yaml
-                   sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yaml
+                   sed -i 's|image: ${IMAGE_NAME}:.*|image: ${IMAGE_NAME}:${IMAGE_TAG}|' deployment.yaml
                    cat deployment.yaml
                 """
             }
@@ -31,12 +31,13 @@ pipeline {
 
         stage('Push the changed deployment file to Git') {
             steps {
-                sh '''
-                   git config --global user.name "hifat"
-                   git config --global user.email "logmanxsa@gmail.com"
+                sh """
+                   git config --global user.name 'hifat'
+                   git config --global user.email 'logmanxsa@gmail.com'
                    git add deployment.yaml
-                   git commit -m "Updated Deployment Manifest"
-                '''
+                   git commit -m 'Updated Deployment Manifest ${IMAGE_TAG}'
+                """
+
                 withCredentials([gitUsernamePassword(
                     credentialsId: 'github-credentials',
                     gitToolName: 'Default')]) {
