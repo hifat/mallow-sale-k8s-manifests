@@ -11,8 +11,8 @@ spec:
     - host: api.mls.local
       http:
         paths:
-          - path: /api
-            pathType: Prefix
+          - path: /
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: mallow-sale-api-service
