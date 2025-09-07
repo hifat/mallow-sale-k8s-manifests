@@ -19,7 +19,7 @@ spec:
             name: mallow-sale-api-env
       containers:
         - name: mallow-sale-api
-          image: butternoei008/mallow-sale-api:1.0.0-86
+          image: butternoei008/mallow-sale-api:1.0.0-87
           ports:
             - containerPort: 4000
               protocol: TCP
