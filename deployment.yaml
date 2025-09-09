@@ -43,3 +43,4 @@ spec:
           #     value: "123456"
           #   - name: DB_PORT
           #     value: "27017"
+  revisionHistoryLimit: 3
