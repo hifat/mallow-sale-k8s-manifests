@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = 'butternoei008/mallow-sale-api'
+        DOCKER_ACCOUNT = credentials('docker-hub-account')
+        IMAGE_NAME = "${DOCKER_ACCOUNT_USR}/mallow-sale-api"
     }
 
     stages {
@@ -40,9 +41,10 @@ pipeline {
 
                 withCredentials([gitUsernamePassword(
                     credentialsId: 'github-credentials',
-                    gitToolName: 'Default')]) {
-                        sh 'git push https://github.com/hifat/mallow-sale-k8s-manifests main'
-                    }
+                    gitToolName: 'Default'
+                )]) {
+                    sh 'git push https://github.com/hifat/mallow-sale-k8s-manifests main'
+                }
             }
         }
     }

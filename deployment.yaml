@@ -26,21 +26,5 @@ spec:
           volumeMounts:
             - name: mallow-sale-api-env
               mountPath: /env/
-          # env:
-          #   - name: APP_NAME
-          #     value: "mallow-sale-api"
-          #   - name: APP_PORT
-          #     value: "4000"
-          #   - name: APP_MODE
-          #     value: "dev"
-          #   - name: DB_HOST
-          #     value: "localhost"
-          #   - name: DB_NAME
-          #     value: "mallow-sale"
-          #   - name: DB_USERNAME
-          #     value: "root"
-          #   - name: DB_PASSWORD
-          #     value: "123456"
-          #   - name: DB_PORT
-          #     value: "27017"
+          args: ["--envPath", "/env/.env"]
   revisionHistoryLimit: 3
